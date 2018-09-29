@@ -42,7 +42,8 @@ The application allows to :
 - view **statistics** from generated text files :
   - session statistics (`Session.txt`)
   - control car statistics (`VehiculeTemoin.txt`)
-  
+
+A "control" car :
 ![Control car](doc/car_t.png?raw=true "Control car")
 
 ## Description
@@ -87,8 +88,8 @@ Finally, the program allows to identify a "control" car, and will record in a te
 The application consists of several classes :
 
 Base classes :
-- `Vehicule` : represent a car
-- `Autoroute` : represent the highway
+- `Vehicule` : represent a car and offers all functions related to it
+- `Autoroute` : represent the highway and offers all functions related to it
 - `EcritDansFichier` : Take care of writing into the `Session.txt` statistics file
 - `EcritVehiculeTemoin` : Take care of writing the `VehiculeTemoin.txt` statistics file
 
@@ -99,16 +100,17 @@ Frames :
 
 Panels :
 - `PanelCommandes` : This panel contains the different components allowing to change the settings that will affect the program. This class implements the `InterfaceCommande` interface which allows to communicate with the `PanelRoute` class using **listeners**
-- `PanelRoute` : This Panel contains the drawing that displays the movement of vehicles on the highway. It is intended to be added in the Frame Window to be displayed on the screen next to the Panel containing the commands
+- `PanelRoute` : This Panel contains the drawing that displays the movement of vehicles on the highway. It is intended to be added in the `Fenetre` frame to be displayed on the screen next to the Panel containing the commands
 
 The `Main` class is the entry point of the application.
 
-The `InterfaceCommande` interface describes the actions that will need to be implemented by classes that need to listen (extends `EventListener`) to changes like car speed, position, etc.
+The `InterfaceCommande` interface describes the actions that will need to be implemented by classes that need to listen to changes like car speed, position, etc.  (extends `EventListener`).
 
-The default display of **AWT** or **Swing** component uses a simple buffer (we see the image being drawn).
-If we start to build quite complex animations, it may cause flickering of the image (clipping).
-To solve this problem, one can use the double-buffering technique. Double buffering is having 2 buffer, an
-in-memory buffer and another one who takes care of the display. Problems of refresh, image jump and other disruptive visuals effects are thus eliminated.
+The default display of **AWT** or **Swing** components uses a simple buffer (we can see the image being drawn).
+When building complex animations, it may cause flickering of the image (clipping).
+To solve this issue, we can use the **double-buffering** technique. Double buffering is having 2 buffers,
+a "back" buffer that processes the drawing stuff in memory, and a "front" buffer that takes care of the display.
+Problems of refresh, image jump and other disruptive visuals effects are thus eliminated.
 
 ![Double buffering](doc/double_buffering.png?raw=true "Double buffering")
 
